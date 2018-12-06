@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Button, TextInput, View} from 'react-native';
+import {Platform, StyleSheet, Button, Text, TextInput, View} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,16 +18,34 @@ const instructions = Platform.select({
 
 export default class App extends Component {
   state = {
-    placeName: ''
+    placeName: '',
+    places: []
   }
 
   placeNameChangedHandler = val => {
     this.setState({
       placeName: val
     })
-  }
+  };
+
+  placeSubmitHandler = () => {
+    if (this.state.placeName.trim() === '') {
+      return;
+    }
+    
+    this.setState(prevState => {
+      return {
+        places: prevState.places.concat(prevState.placeName)
+      };
+    });
+  };
 
   render() {
+
+    const placesOutput = this.state.places.map((place, idx) => (
+      <Text key={idx}>{place}</Text>
+    ));
+    
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
@@ -37,8 +55,13 @@ export default class App extends Component {
               onChangeText={this.placeNameChangedHandler}
               style={styles.placeInput}
             />
-          <Button title='Add' style={styles.placeButton}></Button>
+          <Button 
+            title='Add'
+            style={styles.placeButton}
+            onPress={this.placeSubmitHandler}>
+          </Button>
         </View>
+        <View>{placesOutput}</View>
       </View>
     );
   }
@@ -59,8 +82,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   placeInput: {
-    borderColor: 'black',
-    borderBottomWidth: 1,
     width: '70%'
   },
   placeButton: {
