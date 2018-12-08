@@ -1,54 +1,30 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Button, Text, TextInput, View} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 
 import ListItem from './src/components/ListItem/ListItem';
+import PlaceInput from './src/components/PlaceInput/PlaceInput';
 
 export default class App extends Component {
   state = {
-    placeName: '',
     places: []
-  }
+  } 
 
-  placeNameChangedHandler = val => {
-    this.setState({
-      placeName: val
-    })
-  };
-
-  placeSubmitHandler = () => {
-    if (this.state.placeName.trim() === '') {
-      return;
-    }
-    
+  placeAddedHandler = placeName => {
     this.setState(prevState => {
-      return {
-        places: prevState.places.concat(prevState.placeName)
-      };
+        return {
+          places: prevState.places.concat(placeName)
+        };
     });
   };
 
-
   render() {
-
     const placesOutput = this.state.places.map((place, idx) => (
       <ListItem key={idx} placeName={place} />
     ));
     
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TextInput
-              placeholder='An awesome place'
-              value={this.state.placeName}
-              onChangeText={this.placeNameChangedHandler}
-              style={styles.placeInput}
-            />
-          <Button 
-            title='Add'
-            style={styles.placeButton}
-            onPress={this.placeSubmitHandler}>
-          </Button>
-        </View>
+      <PlaceInput onPlaceAdded={this.placeAddedHandler}/>     
         <View style={styles.listContainer}>{placesOutput}</View>
       </View>
     );
