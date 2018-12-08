@@ -28,6 +28,7 @@ class PlaceInput extends Component {
                     value={this.state.placeName}
                     onChangeText={this.placeNameChangedHandler}
                     style={styles.placeInput}
+                    underlineColorAndroid="#01a299"
                 />
                 <Button 
                     title='Add'
