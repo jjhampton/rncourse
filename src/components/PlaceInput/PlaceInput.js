@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 
 class PlaceInput extends Component {
@@ -12,7 +12,7 @@ class PlaceInput extends Component {
         })
     };
 
-    placeSubmitHandler = () => {
+    placeSubmitHandler = () => {/*  */
         if (this.state.placeName.trim() === '') {
             return;
         }
@@ -45,6 +45,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
+    },
+    placeInput: {
+        width: '70%'
+    },
+    placeButton: {
+        width: '30%'
     }
 });
 

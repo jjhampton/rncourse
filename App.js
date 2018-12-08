@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import { StyleSheet, View} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
 
-import ListItem from './src/components/ListItem/ListItem';
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
+import PlaceList from './src/components/PlaceList/PlaceList';
 
 export default class App extends Component {
   state = {
@@ -17,15 +17,11 @@ export default class App extends Component {
     });
   };
 
-  render() {
-    const placesOutput = this.state.places.map((place, idx) => (
-      <ListItem key={idx} placeName={place} />
-    ));
-    
+  render() {    
     return (
       <View style={styles.container}>
-      <PlaceInput onPlaceAdded={this.placeAddedHandler}/>     
-        <View style={styles.listContainer}>{placesOutput}</View>
+        <PlaceInput onPlaceAdded={this.placeAddedHandler}/>
+        <PlaceList places={this.state.places} />
       </View>
     );
   }
@@ -38,20 +34,5 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#fff'
-  },
-  inputContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  placeInput: {
-    width: '70%'
-  },
-  placeButton: {
-    width: '30%'
-  },
-  listContainer: {
-    width: '100%'
   }
 });
