@@ -6,6 +6,21 @@ import PlaceList from '../../components/PlaceList/PlaceList';
 
 
 class FindPlaceScreen extends Component {
+
+    constructor(props) {
+        super(props);
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+    }
+
+    onNavigatorEvent = event => {
+        if (event.type === 'NavBarButtonPress' && event.id === 'sideDrawerToggle') {
+            this.props.navigator.toggleDrawer({
+                side: 'left',
+                animated: true
+            });
+        }
+    }
+
     itemSelectedHandler = key => {
         const selectedPlace = this.props.places.find(p => p.key === key);
         this.props.navigator.push({
