@@ -8,6 +8,8 @@
     "android": "react-native run-android"
   },
   "dependencies": {
+    "@types/react-native-navigation": "^1.1.12",
+    "@types/react-navigation": "^1.5.15",
     "react": "16.6.1",
     "react-native": "0.57.7",
     "react-native-navigation": "^1.1.493",
