@@ -12,10 +12,24 @@ class AuthScreen extends Component {
             <View style={styles.container}>
                 <Text>Please Log In</Text>
                 <Button title="Switch to Login" />
-                <TextInput placeholder="Your E-Mail Address" />
-                <TextInput placeholder="Password" />
-                <TextInput placeholder="Confirm Password" />
-                <Button title="Submit" onPress={this.loginHandler}/>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        placeholder="Your E-Mail Address"
+                        style={styles.input}
+                        underlineColorAndroid="#01a299"
+                    />
+                    <TextInput
+                        placeholder="Password"
+                        style={styles.input}
+                        underlineColorAndroid="#01a299"
+                    />
+                    <TextInput
+                        placeholder="Confirm Password"
+                        style={styles.input}
+                        underlineColorAndroid="#01a299"
+                    />
+                </View>
+                <Button title="Submit" onPress={this.loginHandler} />
             </View>
         );
     }
@@ -26,6 +40,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    inputContainer: {
+        width: '80%'
+    },
+    input: {
+        width: '100%'
     }
 });
 
