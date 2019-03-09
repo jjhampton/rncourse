@@ -4,16 +4,16 @@ import {
     Text, 
     Button, 
     StyleSheet, 
-    ScrollView,
-    Image 
+    ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
 
 import { addPlace } from '../../store/actions/index';
-import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
+import PlaceInput from '../../components/PlaceInput/PlaceInput';
 import MainText from '../../components/UI/MainText/MainText';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
-import imagePlaceHolder from '../../assets/beautiful-place.jpg';
+import PickImage from '../../components/PickImage/PickImage';
+import PickLocation from '../../components/PickLocation/PickLocation';
 
 class SharePlaceScreen extends Component {
 
@@ -42,21 +42,11 @@ class SharePlaceScreen extends Component {
                     <MainText>
                         <HeadingText>Share a Place with us!</HeadingText>
                     </MainText>
-                    <View style={styles.placeholder}>
-                        <Image source={imagePlaceHolder} style={styles.previewImage}/>
-                    </View>
+                    <PickImage />
+                    <PickLocation />
+                    <PlaceInput />
                     <View style={styles.button}>
-                        <Button title="Pick Image" />
-                    </View>
-                    <View style={styles.placeholder}>
-                        <Text>Map</Text>
-                    </View>
-                    <View style={styles.button}>
-                        <Button title="Locate Me" />
-                    </View>
-                    <DefaultInput placeholder="Place Name" />
-                    <View style={styles.button}>
-                        <Button title="Share Place!" />
+                        <Button title="Share Place!" onPress={() => {}} />
                     </View>
                 </View>
             </ScrollView>
@@ -69,19 +59,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
-    placeholder: {
-        borderWidth: 1,
-        borderColor: 'black',
-        backgroundColor: '#eee',
-        width: '80%',
-        height: 150
-    },
     button: {
         margin: 8
-    },
-    previewImage: {
-        width: '100%',
-        height: '100%'
     }
 });
 
